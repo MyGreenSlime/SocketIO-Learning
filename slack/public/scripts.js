@@ -1,4 +1,9 @@
-const socket = io('http://localhost:9000');
+const username = prompt("what is your username")
+const socket = io('http://localhost:9000',{
+    query: {
+        username
+    }
+});
 let nsSocket = "";
 
 socket.on('nsList', (data)=>{

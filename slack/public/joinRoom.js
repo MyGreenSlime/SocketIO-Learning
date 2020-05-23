@@ -22,10 +22,11 @@ function joinRoom(roomName){
         console.log(e.target.value)
         let messages =Array.from(document.getElementsByClassName('message-text'))
         messages.forEach((msg) => {
-            if(msg.innerText.indexOf(e.target.value) === -1) {
-                msg.style.display = "none";
+            let parent = msg.parentNode.parentNode
+            if(msg.innerText.toLowerCase().indexOf(e.target.value.toLowerCase()) === -1) {
+                parent.style.display = "none";
             } else {
-                msg.style.display = "block";
+                parent.style.display = "flex";
             }
         })
     })

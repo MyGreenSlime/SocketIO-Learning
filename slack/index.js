@@ -28,6 +28,7 @@ io.on('connection', (socket) =>{
 
 namespaces.map(namespace =>{
     io.of(namespace.endpoint).on('connection', (socket) => {
+        const username  = socket.handshake.query.username
         console.log(`${socket.id} has joined ${namespace.endpoint}`)
         socket.emit('nsRoomLoad', namespace.rooms)
         socket.on('joinRoom', (roomToJoin, numberOfUsersCallback)=> {
@@ -51,7 +52,7 @@ namespaces.map(namespace =>{
             const fullMsg = {
                 text : msg.text,
                 time : Date.now(),
-                username : 'Dondon',
+                username : username,
                 avatar : 'https://via.placeholder.com/30'
             }
             const roomTitle = Object.keys(socket.rooms)[1]
